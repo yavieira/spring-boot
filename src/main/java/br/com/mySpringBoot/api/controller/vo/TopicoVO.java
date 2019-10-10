@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 
 public class TopicoVO {
 
+    //Os VO's (Value Objects) são representações de uma entity para saída de dados da aplicação
+
     private Long id;
 
     private String titulo;
