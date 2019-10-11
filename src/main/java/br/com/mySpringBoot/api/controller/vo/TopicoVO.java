@@ -1,6 +1,7 @@
 package br.com.mySpringBoot.api.controller.vo;
 
 import br.com.mySpringBoot.api.model.Topico;
+import org.springframework.data.domain.Page;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -18,17 +19,15 @@ public class TopicoVO {
 
     private LocalDateTime dataCriacao;
 
+    private String nomeCurso;
+
     public TopicoVO(Topico topico){
 
         this.id = topico.getId();
         this.titulo = topico.getTitulo();
         this.mensagem = topico.getMensagem();
         this.dataCriacao = topico.getDataCriacao();
-    }
-
-    public static List<TopicoVO> convert(List<Topico> topicos) {
-
-        return topicos.stream().map(TopicoVO::new).collect(Collectors.toList());
+        this.nomeCurso = topico.getCurso().getNome();
     }
 
     public Long getId() {
@@ -45,5 +44,14 @@ public class TopicoVO {
 
     public LocalDateTime getDataCriacao() {
         return dataCriacao;
+    }
+
+    public String getNomeCurso() {
+        return nomeCurso;
+    }
+
+    public static Page<TopicoVO> convert(Page<Topico> topicos) {
+
+        return topicos.map(TopicoVO::new);
     }
 }
