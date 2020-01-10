@@ -1,0 +1,101 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!doctype html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/css/bootstrapValidator.css"/>
+    <title>Register</title>
+</head>
+<body style="margin: 50px">
+<div class="container">
+    <form th:action="@{/user/add}" method="post">
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label for="validationServer013">First name</label>
+                <input type="text" class="form-control is-valid" id="validationServer013" placeholder="First name" th:name="firstName" required>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="validationServer023">Last name</label>
+                <input type="text" class="form-control is-valid" id="validationServer023" placeholder="Last name" th:name="lastName" required>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="validationServerUsername33">Username</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupPrepend33">@</span>
+                    </div>
+                    <input type="text" class="form-control is-invalid" id="validationServerUsername33" placeholder="Username" th:name="username" aria-describedby="inputGroupPrepend33" required>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-3 mb-3">
+                <label for="validationServer053">Zip</label>
+                <input type="text" class="form-control is-invalid" id="validationServer053" placeholder="Zip" th:name="cep" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="validationServer033">City</label>
+                <input type="text" class="form-control is-invalid" id="validationServer033" th:name="cidade" placeholder="City"
+                       required>
+            </div>
+            <div class="col-md-3 mb-3">
+                <label for="validationServer043">State</label>
+                <input type="text" class="form-control is-invalid" id="validationServer043" th:name="uf" placeholder="State"
+                       required>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input is-invalid" id="invalidCheck33" required>
+                <label class="custom-control-label" for="invalidCheck33">Agree to terms and conditions</label>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+        <button class="btn btn-primary" type="reset">Clear</button>
+        <button class="btn btn-primary" type="button">Back</button>
+    </form></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js"/>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+
+<script>
+
+    $('#validationServer053').blur(function () {
+        consultaCep(this.value);
+    });
+
+    $('#validationServer053').keyup(function () {
+        if (this.value.length == 8) {
+            this.blur();
+        }
+    });
+
+    function consultaCep(cep) {
+        var urlViaCep = "https://viacep.com.br/ws/" + cep + "/json/";
+
+        $.getJSON(urlViaCep, function (data) {
+
+            if (data.logradouro == undefined) {
+                $('#validationServer033').val('Endereço não encontrado');
+            } else {
+                $("#validationServer043").val(data.uf);
+                $("#validationServer033").val(data.localidade);
+            }
+        });
+    }
+
+</script>
+</html>

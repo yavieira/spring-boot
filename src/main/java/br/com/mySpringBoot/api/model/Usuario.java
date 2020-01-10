@@ -18,6 +18,9 @@ public class Usuario implements UserDetails {
     private String email;
     private String senha;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private Endereco endereco;
+
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Perfil> roles = new ArrayList<>();
 
@@ -59,6 +62,14 @@ public class Usuario implements UserDetails {
 
     public void setRoles(List<Perfil> roles) {
         this.roles = roles;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 
     @Override

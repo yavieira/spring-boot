@@ -46,8 +46,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/topicos").permitAll()
                 .antMatchers(HttpMethod.GET, "/topicos/*").permitAll()
-                .antMatchers(HttpMethod.POST, "/auth").permitAll()
+                .antMatchers(HttpMethod.POST, "/auth/*").permitAll()
                 .antMatchers(HttpMethod.GET, "/actuator/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/*").permitAll()
+                .antMatchers(HttpMethod.GET, "/home/*").permitAll()
+                .antMatchers(HttpMethod.POST, "/user/add").permitAll()
                 .anyRequest().authenticated()
         .and().csrf().disable() // Cross Site Request Forward
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
