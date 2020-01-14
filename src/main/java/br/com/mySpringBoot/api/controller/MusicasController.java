@@ -7,6 +7,7 @@ import br.com.mySpringBoot.api.model.Musica;
 import br.com.mySpringBoot.api.repository.MusicaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -15,7 +16,7 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.util.Optional;
 
-@RestController
+@Controller
 @RequestMapping("/musica")
 public class MusicasController {
 
