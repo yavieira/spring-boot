@@ -1,6 +1,7 @@
 package br.com.mySpringBoot.api.controller;
 
 import br.com.mySpringBoot.api.controller.form.LoginForm;
+import br.com.mySpringBoot.api.controller.validation.ErroVO;
 import br.com.mySpringBoot.api.controller.vo.TokenVO;
 import br.com.mySpringBoot.api.model.Usuario;
 import br.com.mySpringBoot.api.repository.UsuarioRepository;
@@ -11,8 +12,12 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -31,7 +36,7 @@ public class AuthController {
     private UsuarioRepository usuarioRepository;
 
     @PostMapping
-    public ResponseEntity<TokenVO> auth(@RequestBody @Valid LoginForm form) {
+    public ResponseEntity<?> auth(@RequestBody @Valid LoginForm form) {
 
         UsernamePasswordAuthenticationToken dadosLogin = form.convert();
         try {
@@ -39,7 +44,7 @@ public class AuthController {
             String token = tokenService.gerarToken(auth);
             return ResponseEntity.ok(new TokenVO(token, "Bearer"));
         } catch (AuthenticationException e) {
-            return ResponseEntity.badRequest().build();
+            return ResponseEntity.badRequest().body(new ErroVO("Bad Credentials", "User not found"));
         }
     }
 
@@ -54,14 +59,17 @@ public class AuthController {
         if (usuario == null) {
             mv.setViewName("index");
             return mv;
+        }
 
-        } else {
+        boolean verified = new BCryptPasswordEncoder().matches(password, usuario.getSenha());
+        if (verified) {
             mv.setViewName("home");
             return mv;
         }
+        return mv;
     }
 
-    public static void main(String[] args) {
+        public static void main (String[]args){
 
+        }
     }
-}

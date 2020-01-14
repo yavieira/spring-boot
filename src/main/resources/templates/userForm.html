@@ -15,41 +15,50 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/css/bootstrapValidator.css"/>
     <title>Register</title>
 </head>
+
 <body style="margin: 50px">
 <div class="container">
     <form th:action="@{/user/add}" method="post">
         <div class="form-row">
             <div class="col-md-4 mb-3">
-                <label for="validationServer013">First name</label>
-                <input type="text" class="form-control is-valid" id="validationServer013" placeholder="First name" th:name="firstName" required>
+                <label for="firstName">First name</label>
+                <input type="text" class="form-control is-valid" id="firstName" placeholder="First name" th:name="firstName" required>
             </div>
             <div class="col-md-4 mb-3">
-                <label for="validationServer023">Last name</label>
-                <input type="text" class="form-control is-valid" id="validationServer023" placeholder="Last name" th:name="lastName" required>
+                <label for="lastName">Last name</label>
+                <input type="text" class="form-control is-valid" id="lastName" placeholder="Last name" th:name="lastName" required>
             </div>
+        </div>
+        <div class="form-row">
             <div class="col-md-4 mb-3">
-                <label for="validationServerUsername33">Username</label>
+                <label for="username">Username</label>
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroupPrepend33">@</span>
                     </div>
-                    <input type="text" class="form-control is-invalid" id="validationServerUsername33" placeholder="Username" th:name="username" aria-describedby="inputGroupPrepend33" required>
+                    <input type="text" class="form-control is-invalid" id="username" placeholder="Username" th:name="username" aria-describedby="inputGroupPrepend33" required>
                 </div>
+            </div>
+            <div class="col-md-4 mb-3">
+            <label for="username">Password</label>
+            <div class="input-group">
+                <input type="password" class="form-control is-invalid" id="password" placeholder="Password" th:name="password" aria-describedby="inputGroupPrepend33" required>
+            </div>
             </div>
         </div>
         <div class="form-row">
-            <div class="col-md-3 mb-3">
-                <label for="validationServer053">Zip</label>
-                <input type="text" class="form-control is-invalid" id="validationServer053" placeholder="Zip" th:name="cep" required>
+            <div class="col-md-2 mb-3">
+                <label for="cep">Zip</label>
+                <input type="text" class="form-control is-invalid" id="cep" placeholder="Zip" th:name="cep" required>
             </div>
-            <div class="col-md-6 mb-3">
-                <label for="validationServer033">City</label>
-                <input type="text" class="form-control is-invalid" id="validationServer033" th:name="cidade" placeholder="City"
+            <div class="col-md-3 mb-3">
+                <label for="cidade">City</label>
+                <input type="text" class="form-control is-invalid" id="cidade" th:name="cidade" placeholder="City"
                        required>
             </div>
             <div class="col-md-3 mb-3">
-                <label for="validationServer043">State</label>
-                <input type="text" class="form-control is-invalid" id="validationServer043" th:name="uf" placeholder="State"
+                <label for="uf">State</label>
+                <input type="text" class="form-control is-invalid" id="uf" th:name="uf" placeholder="State"
                        required>
             </div>
         </div>
@@ -62,7 +71,8 @@
         <button class="btn btn-primary" type="submit">Submit</button>
         <button class="btn btn-primary" type="reset">Clear</button>
         <button class="btn btn-primary" type="button">Back</button>
-    </form></div>
+    </form>
+</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js"/>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -73,11 +83,11 @@
 
 <script>
 
-    $('#validationServer053').blur(function () {
+    $('#cep').blur(function () {
         consultaCep(this.value);
     });
 
-    $('#validationServer053').keyup(function () {
+    $('#cep').keyup(function () {
         if (this.value.length == 8) {
             this.blur();
         }
@@ -89,10 +99,10 @@
         $.getJSON(urlViaCep, function (data) {
 
             if (data.logradouro == undefined) {
-                $('#validationServer033').val('Endereço não encontrado');
+                $('#cidade').val('Endereço não encontrado');
             } else {
-                $("#validationServer043").val(data.uf);
-                $("#validationServer033").val(data.localidade);
+                $("#uf").val(data.uf);
+                $("#cidade").val(data.localidade);
             }
         });
     }

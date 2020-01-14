@@ -4,19 +4,19 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 
 public class LoginForm {
 
-    private String login;
+    private String email;
 
     private String senha;
 
     public LoginForm() {
     }
 
-    public String getLogin() {
-        return login;
+    public String getEmail() {
+        return email;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getSenha() {
@@ -28,6 +28,6 @@ public class LoginForm {
     }
 
     public UsernamePasswordAuthenticationToken convert() {
-        return new UsernamePasswordAuthenticationToken(login, senha);
+        return new UsernamePasswordAuthenticationToken(email, senha);
     }
 }

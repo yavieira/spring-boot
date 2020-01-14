@@ -8,6 +8,7 @@ import br.com.mySpringBoot.api.repository.UsuarioRepository;
 import br.com.mySpringBoot.api.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -30,7 +31,7 @@ public class UsuarioController {
         Usuario user = new Usuario();
         user.setNome(form.getNome());
         user.setEmail(form.getEmail());
-        user.setSenha(StringUtils.hashPassword(form.getSenha()));
+        user.setSenha(new BCryptPasswordEncoder().encode(form.getSenha()));
 
         userRepository.save(user);
 
@@ -46,11 +47,18 @@ public class UsuarioController {
             @RequestParam(value = "username") String username,
             @RequestParam(value = "cep") String cep,
             @RequestParam(value = "cidade") String cidade,
-            @RequestParam(value = "uf") String uf){
+            @RequestParam(value = "uf") String uf,
+            @RequestParam(value = "password") String password){
+
+        if(userRepository.findByEmail(username).isPresent())
+        {
+            return new ModelAndView("userForm");
+        }
 
         Usuario usuario = new Usuario();
         usuario.setNome(firstName + " " + lastName);
         usuario.setEmail(username);
+        usuario.setSenha(new BCryptPasswordEncoder().encode(password));
 
         Endereco endereco = new Endereco();
         endereco.setCep(cep);

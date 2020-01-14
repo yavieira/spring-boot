@@ -67,56 +67,87 @@
 
 </style>
 
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Mainstream</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(página atual)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dropdown
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Ação</a>
+                    <a class="dropdown-item" href="#">Outra ação</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Algo mais aqui</a>
+                </div>
+            </li>
+
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
+        </form>
+    </div>
+</nav>
+
 <section>
     <div class="container">
         <div class="row mbr-justify-content-center">
 
-            <div class="col-lg-6 mbr-col-md-10">
+            <div class="col-lg-4 mbr-col-md-10">
                 <div class="wrap">
-                    <a th:href="@{/home/user}">
+                    <div class="ico-wrap">
+                        <span class="fa fa-user-o fa-3x"></span>
+                    </div>
                     <div class="text-wrap vcenter">
                         <h2 class="mbr-fonts-style mbr-bold mbr-section-title3 display-5">Register an <span>User</span></h2>
+                        <a th:href="@{/home/user}">
                         <p class="mbr-fonts-style text1 mbr-text display-6">Click here to register an user</p>
-                    </div>
                     </a>
+                    </div>
                 </div>
             </div>
-            <div class="col-lg-6 mbr-col-md-10">
+            <div class="col-lg-4 mbr-col-md-10">
                 <div class="wrap">
                     <div class="ico-wrap">
-                        <span class="mbr-iconfont fa-calendar fa"></span>
+                        <span class="fa fa-quora fa-3x"></span>
                     </div>
                     <div class="text-wrap vcenter">
-                        <h2 class="mbr-fonts-style mbr-bold mbr-section-title3 display-5">Create
-                            <span>An Effective Team</span>
+                        <h2 class="mbr-fonts-style mbr-bold mbr-section-title3 display-5">
+                            <span>Submit your songs</span>
                         </h2>
-                        <p class="mbr-fonts-style text1 mbr-text display-6">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum</p>
+                        <a th:href="@{/home/music}">
+                        <p class="mbr-fonts-style text1 mbr-text display-6">Click here to submit a song</p>
+                        </a>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 mbr-col-md-10">
+            <div class="col-lg-4 mbr-col-md-10">
                 <div class="wrap">
                     <div class="ico-wrap">
-                        <span class="mbr-iconfont fa-globe fa"></span>
+                        <span class="fa fa-phone fa-3x"></span>
                     </div>
                     <div class="text-wrap vcenter">
-                        <h2 class="mbr-fonts-style mbr-bold mbr-section-title3 display-5">Launch
-                            <span>A Unique Project</span>
+                        <h2 class="mbr-fonts-style mbr-bold mbr-section-title3 display-5">
+                            <span>Contact us</span>
                         </h2>
-                        <p class="mbr-fonts-style text1 mbr-text display-6">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum</p>
+                        <a th:href="@{/home/contact}">
+                        <p class="mbr-fonts-style text1 mbr-text display-6">Contact us by our channels</p>
+                        </a>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 mbr-col-md-10">
-                <div class="wrap">
-                    <div class="ico-wrap">
-                        <span class="mbr-iconfont fa-trophy fa"></span>
-                    </div>
-                    <div class="text-wrap vcenter">
-                        <h2 class="mbr-fonts-style mbr-bold mbr-section-title3 display-5">Achieve <span>Your Targets</span></h2>
-                        <p class="mbr-fonts-style text1 mbr-text display-6">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum</p>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

@@ -46,20 +46,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/topicos").permitAll()
                 .antMatchers(HttpMethod.GET, "/topicos/*").permitAll()
-                .antMatchers(HttpMethod.POST, "/auth/*").permitAll()
+                .antMatchers(HttpMethod.POST, "/auth").permitAll()
                 .antMatchers(HttpMethod.GET, "/actuator/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/*").permitAll()
                 .antMatchers(HttpMethod.GET, "/home/*").permitAll()
                 .antMatchers(HttpMethod.POST, "/user/add").permitAll()
+                .antMatchers(HttpMethod.POST, "/user").permitAll()
+                .antMatchers(HttpMethod.POST, "/auth/login").permitAll()
                 .anyRequest().authenticated()
-        .and().csrf().disable() // Cross Site Request Forward
-        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-        .and().addFilterBefore(new Filter(tokenService, usuarioRepository), UsernamePasswordAuthenticationFilter.class);
+                .and().csrf().disable() // Cross Site Request Forward
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and().addFilterBefore(new Filter(tokenService, usuarioRepository), UsernamePasswordAuthenticationFilter.class);
     }
 
     //Recursos estáticos (js, css, jsp)
     @Override
     public void configure(WebSecurity web) throws Exception {
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new BCryptPasswordEncoder().encode("123456"));
+        System.out.println(new BCryptPasswordEncoder().matches("123456", "$2a$10$OU8QfziTZZv6JApT7s8q5OyuAacRGuTQquiThg8IXL93rlsBq8tzu"));
     }
 
 }
