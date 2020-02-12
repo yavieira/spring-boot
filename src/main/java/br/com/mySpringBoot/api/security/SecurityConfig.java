@@ -14,10 +14,12 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @EnableWebSecurity //Habilita o Spring Security
 @Configuration //Na subida da aplicação, inicializa a classe de configuração
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebMvcConfigurer {
 
     @Autowired
     private AuthService authService;
@@ -51,15 +53,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/user/add").permitAll()
                 .antMatchers(HttpMethod.POST, "/user").permitAll()
                 .antMatchers(HttpMethod.POST, "/auth/login").permitAll()
+                .antMatchers(HttpMethod.POST, "/mail").permitAll()
+                .antMatchers(HttpMethod.GET, "/static/**").permitAll()
                 .anyRequest().authenticated()
-                .and().csrf().disable() // Cross Site Request Forward
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().addFilterBefore(new Filter(tokenService, usuarioRepository), UsernamePasswordAuthenticationFilter.class);
     }
 
     //Recursos estáticos (js, css, jsp)
     @Override
     public void configure(WebSecurity web) throws Exception {
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry
+                .addResourceHandler("/static/**")
+                .addResourceLocations("classpath:static/").setCachePeriod(3600);
     }
 
     public static void main(String[] args) {

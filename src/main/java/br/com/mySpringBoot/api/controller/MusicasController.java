@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.transaction.Transactional;
-import javax.validation.Valid;
 import java.net.URI;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -38,10 +41,13 @@ public class MusicasController {
     @PostMapping
     @Transactional
 //    @CacheEvict(value = "listaTopicos", allEntries = true)
-    public ResponseEntity<MusicaVO> cadastrar(@RequestBody @Valid MusicaForm form, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<MusicaVO> cadastrar(@RequestBody MusicaForm form, UriComponentsBuilder uriBuilder) {
 
         Musica musica = form.converter(form);
-        musicaRepository.save(musica);
+        List<Musica> musicas = new ArrayList<>();
+        musicas.add(musica);
+        musica.getAutor().setMusicas(musicas);
+        musicaRepository.saveAndFlush(musica);
         URI uri = uriBuilder.path("/musica/{id}").buildAndExpand(musica.getId()).toUri();
         return ResponseEntity.created(uri).body(new MusicaVO(musica));
     }
@@ -66,5 +72,12 @@ public class MusicasController {
             return ResponseEntity.ok().build();
         }
         return ResponseEntity.notFound().build();
+    }
+
+    public static void main(String[] args) {
+
+        SimpleDateFormat sdf = new SimpleDateFormat();
+        Date data = new Date();
+        System.out.println(sdf.format(data));
     }
 }

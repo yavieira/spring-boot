@@ -1,6 +1,7 @@
 package br.com.mySpringBoot.api.controller.form;
 
 import br.com.mySpringBoot.api.controller.vo.MusicaVO;
+import br.com.mySpringBoot.api.model.Autor;
 import br.com.mySpringBoot.api.model.Musica;
 import org.springframework.data.domain.Page;
 
@@ -14,9 +15,9 @@ public class MusicaForm {
     @NotNull @NotEmpty
     private String album;
     @NotNull @NotEmpty
-    private String autor;
+    private Autor autor;
 
-    public MusicaForm(@NotNull @NotEmpty String titulo, @NotNull @NotEmpty String album, @NotNull @NotEmpty String autor) {
+    public MusicaForm(@NotNull @NotEmpty String titulo, @NotNull @NotEmpty String album, @NotNull @NotEmpty Autor autor) {
         this.titulo = titulo;
         this.album = album;
         this.autor = autor;
@@ -38,16 +39,22 @@ public class MusicaForm {
         this.album = album;
     }
 
-    public String getAutor() {
+    public Autor getAutor() {
         return autor;
     }
 
-    public void setAutor(String autor) {
+    public void setAutor(Autor autor) {
         this.autor = autor;
     }
 
     public static Musica converter(MusicaForm form) {
 
-        return new Musica(form.getTitulo(), form.getAutor(), form.getAlbum());
+        Autor autor = new Autor();
+        autor.setNome(form.getAutor().getNome());
+        autor.setBanda(form.getAutor().getBanda());
+        autor.setEstilo(form.getAutor().getEstilo());
+
+
+        return new Musica(form.getTitulo(), autor, form.getAlbum());
     }
 }

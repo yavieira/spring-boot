@@ -24,11 +24,11 @@ public class HomeController {
         return mv;
     }
 
-    @GetMapping(value = "topic")
+    @GetMapping(value = "music")
     public ModelAndView topic() {
 
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("userForm");
+        mv.setViewName("musicForm");
         return mv;
     }
 

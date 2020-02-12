@@ -1,155 +1,326 @@
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
+<head>
+    <meta charset="UTF-8">
+    <title>Spring Framework Guru Courses</title>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
 
-<style>
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"></script>
 
-    section {
-        padding-top: 4rem;
-        padding-bottom: 5rem;
-        background-color: #f1f4fa;
-    }
-    .wrap {
-        display: flex;
-        background: white;
-        padding: 1rem 1rem 1rem 1rem;
-        border-radius: 0.5rem;
-        box-shadow: 7px 7px 30px -5px rgba(0,0,0,0.1);
-        margin-bottom: 2rem;
-    }
+    <style>
+        .jumbotron {
+            background: url('../static/images/yawanawa.jpg') no-repeat center center;
+            height: 350px;
+            color: white;
+            text-shadow: #444 0 1px 1px;
+        }
 
-    .wrap:hover {
-        background: linear-gradient(135deg,#6394ff 0%,#0a193b 100%);
-        color: white;
-    }
+        body {
+            color: #2b3636;
+            font-family: "Proxima";
+        }
 
-    .ico-wrap {
-        margin: auto;
-    }
+        body {
+            color: #333;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.42857;
+        }
 
-    .mbr-iconfont {
-        font-size: 4.5rem !important;
-        color: #313131;
-        margin: 1rem;
-        padding-right: 1rem;
-    }
-    .vcenter {
-        margin: auto;
-    }
+        .row {
+            margin-left: -15px;
+            margin-right: -15px;
+        }
 
-    .mbr-section-title3 {
-        text-align: left;
-    }
-    h2 {
-        margin-top: 0.5rem;
-        margin-bottom: 0.5rem;
-    }
-    .display-5 {
-        font-family: 'Source Sans Pro',sans-serif;
-        font-size: 1.4rem;
-    }
-    .mbr-bold {
-        font-weight: 700;
-    }
+        *::before, *::after {
+            box-sizing: border-box;
+        }
 
-    p {
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
-        line-height: 25px;
-    }
-    .display-6 {
-        font-family: 'Source Sans Pro',sans-serif;
-        font-size: 1re}
+        *::before, *::after {
+            box-sizing: border-box;
+        }
 
-</style>
+        .view-directory .course-listing {
+            background-color: rgba(255, 255, 255, 0.7);
+        }
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Mainstream</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+        .course-listing {
+            background-color: #f7f7f7;
+            border: 1px solid #f1f3f0;
+            border-radius: 9px;
+            box-shadow: 0 1px #f1f3f0;
+            cursor: pointer;
+            height: 390px;
+            margin-bottom: 50px;
+            padding: 0;
+        }
 
-    <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(página atual)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Ação</a>
-                    <a class="dropdown-item" href="#">Outra ação</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Algo mais aqui</a>
-                </div>
-            </li>
+        * {
+            box-sizing: border-box;
+        }
 
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
-        </form>
-    </div>
-</nav>
+        .course-listing .course-box-image-container {
+            max-height: 208px;
+            overflow: hidden;
+        }
 
-<section>
+        .course-listing .course-box-image-container .course-box-image {
+            border-bottom: 1px solid #ededed;
+            border-top-left-radius: 9px;
+            border-top-right-radius: 9px;
+            display: block;
+            margin: auto;
+            width: 100%;
+        }
+
+        img {
+            vertical-align: middle;
+        }
+
+        img {
+            border: 0 none;
+        }
+
+        .course-listing .course-listing-title {
+            color: #6cb44a;
+            font-size: 18px;
+            font-weight: bold;
+            line-height: 25px;
+            max-height: 70px;
+            overflow: hidden;
+            padding: 16px 16px 4px;
+        }
+
+        .course-listing .course-listing-subtitle {
+            color: #586f6f;
+            font-size: 14px;
+            font-weight: 200;
+            max-height: 65px;
+            overflow: hidden;
+            padding: 5px 16px;
+        }
+
+        .course-listing .course-listing-extra-info .course-price {
+            color: #6eae50 !important;
+            font-size: 15px;
+            font-weight: bold;
+            line-height: 34px;
+            padding-right: 10px;
+            text-align: right;
+        }
+
+        .course-listing .course-listing-extra-info .course-author-name {
+            font-size: 15px;
+            font-weight: 200;
+            line-height: 30px;
+            max-height: 30px;
+            overflow: hidden;
+            padding-left: 5px;
+        }
+
+        .course-listing .course-listing-extra-info .course-bundle {
+            font-size: 15px;
+            font-weight: 200;
+            line-height: 30px;
+        }
+    </style>
+
+</head>
+<body>
+<div class="jumbotron">
     <div class="container">
-        <div class="row mbr-justify-content-center">
+        <h1 color="black">Welcome to the Black Parade</h1>
+        <p class="lead">Online Courses for Spring Framework</p>
+    </div>
+</div>
 
-            <div class="col-lg-4 mbr-col-md-10">
-                <div class="wrap">
-                    <div class="ico-wrap">
-                        <span class="fa fa-user-o fa-3x"></span>
-                    </div>
-                    <div class="text-wrap vcenter">
-                        <h2 class="mbr-fonts-style mbr-bold mbr-section-title3 display-5">Register an <span>User</span></h2>
-                        <a th:href="@{/home/user}">
-                        <p class="mbr-fonts-style text1 mbr-text display-6">Click here to register an user</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Spring Framework Guru Courses</h1>
+        </div>
+    </div>
+
+    <div class="row course-list list">
+        <div class="col-md-4">
+            <div class="course-listing">
+                <div class="row">
+                    <a href="/courses/introduction-to-spring">
+                        <div class="col-lg-12">
+                            <div class="course-box-image-container">
+                                <img role="presentation"
+                                     src="https://d2vvqscadf4c1f.cloudfront.net/scgeIJ9wRGGNWvK0jAld_ThumbFREE_01.png"
+                                     class="course-box-image">
+                            </div>
+                            <div class="course-listing-title">
+                                Introduction to Spring
+                            </div>
+                            <div class="course-listing-subtitle">
+                                Introductory Course for the Spring Framework
+                            </div>
+                        </div>
                     </a>
+                </div>
+                <div class="row course-listing-extra-info col-xs-12">
+                    <div class="col-xs-4">
+                        <div class="small course-price">
+                            FREE
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 mbr-col-md-10">
-                <div class="wrap">
-                    <div class="ico-wrap">
-                        <span class="fa fa-quora fa-3x"></span>
-                    </div>
-                    <div class="text-wrap vcenter">
-                        <h2 class="mbr-fonts-style mbr-bold mbr-section-title3 display-5">
-                            <span>Submit your songs</span>
-                        </h2>
-                        <a th:href="@{/home/music}">
-                        <p class="mbr-fonts-style text1 mbr-text display-6">Click here to submit a song</p>
-                        </a>
+        </div>
+        <div class="col-md-4">
+            <div class="course-listing">
+                <div class="row">
+                    <a data-role="course-box-link" href="/courses/spring-core">
+                        <div class="col-lg-12">
+                            <div class="course-box-image-container">
+                                <img role="presentation"
+                                     src="https://d2vvqscadf4c1f.cloudfront.net/YnsFJMclS5aYmtiAMSX0_ThumbSPRINcore.png"
+                                     class="course-box-image">
+                            </div>
+                            <div class="course-listing-title">
+                                Spring Core
+                            </div>
+                            <div class="course-listing-subtitle">
+                                The Fundamentals of Spring Framework
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="row course-listing-extra-info col-xs-12">
+                    <div class="col-xs-4">
+                        <div class="small course-price">
+                            $99
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 mbr-col-md-10">
-                <div class="wrap">
-                    <div class="ico-wrap">
-                        <span class="fa fa-phone fa-3x"></span>
-                    </div>
-                    <div class="text-wrap vcenter">
-                        <h2 class="mbr-fonts-style mbr-bold mbr-section-title3 display-5">
-                            <span>Contact us</span>
-                        </h2>
-                        <a th:href="@{/home/contact}">
-                        <p class="mbr-fonts-style text1 mbr-text display-6">Contact us by our channels</p>
-                        </a>
+        </div>
+        <div class="col-md-4">
+            <div class="course-listing">
+                <div class="row">
+                    <a data-role="course-box-link" href="/courses/spring-core-advanced">
+                        <div class="col-lg-12">
+                            <div class="course-box-image-container">
+                                <img role="presentation"
+                                     src="https://d2vvqscadf4c1f.cloudfront.net/fMahox0zTOW4gYkMMjmN_ThumbSPRINcoreAdv.png"
+                                     class="course-box-image">
+                            </div>
+                            <div class="course-listing-title">
+                                Spring Core Advanced
+                            </div>
+                            <div class="course-listing-subtitle">
+                                Advanced Topics of Spring Core
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="row course-listing-extra-info col-xs-12">
+                    <div class="col-xs-4">
+                        <div class="small course-price">
+                            $99
+                        </div>
                     </div>
                 </div>
-            </div>
             </div>
         </div>
     </div>
-</section>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="course-listing">
+                <div class="row">
+                    <a data-role="course-box-link" href="/courses/spring-core-dev-ops">
+                        <div class="col-lg-12">
+                            <div class="course-box-image-container">
+                                <img role="presentation"
+                                     src="https://d2vvqscadf4c1f.cloudfront.net/wc9ORhpRQUataALq2ejc_ThumbSPRINcoreDevOps2.png"
+                                     class="course-box-image">
+                            </div>
+                            <div class="course-listing-title">
+                                Spring Core Dev Ops
+                            </div>
+                            <div class="course-listing-subtitle">
+                                Managing and Deploying Spring Applications in the Enterprise
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="row course-listing-extra-info col-xs-12">
+                    <div class="col-xs-4">
+                        <div class="small course-price">
+                            $15
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="course-listing">
+                <div class="row">
+                    <a data-role="course-box-link" href="/courses/spring-core-ultimate">
+                        <div class="col-lg-12">
+                            <div class="course-box-image-container">
+                                <img role="presentation"
+                                     src="https://d2vvqscadf4c1f.cloudfront.net/DkBQKd4WQxWTCLnFwJCR_ThumbSPRINcoreUltimate.png"
+                                     class="course-box-image">
+                            </div>
+                            <div class="course-listing-title">
+                                Spring Core Ultimate
+                            </div>
+                            <div class="course-listing-subtitle">
+                                The Ulitmate Bundle of my Spring Courses
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="row course-listing-extra-info col-xs-12">
+                    <div class="col-xs-8">
+                        <div class="small course-bundle">
+                            5 Course Bundle
+                        </div>
+                    </div>
+                    <div class="col-xs-4">
+                        <div class="small course-price">
+                            $147
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="course-listing">
+                <div class="row">
+                    <a data-role="course-box-link" href="/courses/thymeleaf">
+                        <div class="col-lg-12">
+                            <div class="course-box-image-container">
+                                <img role="presentation"
+                                     src="https://d2vvqscadf4c1f.cloudfront.net/J8mqML4lQRmUmM4gdCW0_Thumb_Thymeleaf.png"
+                                     class="course-box-image">
+                            </div>
+                            <div class="course-listing-title">
+                                Thymeleaf
+                            </div>
+                            <div class="course-listing-subtitle">
+                                Rocking out Thymeleaf with Spring
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="row course-listing-extra-info col-xs-12">
+                    <div class="col-xs-4">
+                        <div class="small course-price">
+                            $15
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
 </html>

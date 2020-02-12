@@ -24,7 +24,7 @@ public class MusicaVO {
         this.id = musica.getId();
         this.titulo = musica.getTitulo();
         this.album = musica.getAlbum();
-        this.autor = musica.getAutor();
+        this.autor = musica.getAutor().getNome();
         this.dataCriacao = musica.getDataCriacao();
     }
 

@@ -20,12 +20,12 @@ public class EmailSenderService {
     @Value("${email.from.address}")
     private String fromAddress;
 
-    public void sendMailMultipart(String toEmail, String subject, String message, File file) throws MessagingException {
+    public void sendMailMultipart(String fromEmail, String subject, String message, File file) throws MessagingException {
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
 
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
-        helper.setFrom(fromAddress);
-        helper.setTo(toEmail);
+        helper.setFrom(fromEmail);
+        helper.setTo(fromAddress);
         helper.setSubject(subject);
         helper.setText(message);
 

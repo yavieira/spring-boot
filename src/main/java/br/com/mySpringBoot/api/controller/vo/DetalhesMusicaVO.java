@@ -17,7 +17,7 @@ public class DetalhesMusicaVO {
         this.titulo = musica.getTitulo();
         this.album = musica.getAlbum();
         this.dataCriacao = musica.getDataCriacao();
-        this.nomeAutor = musica.getAutor();
+        this.nomeAutor = musica.getAutor().getNome();
     }
 
     public Long getId() {

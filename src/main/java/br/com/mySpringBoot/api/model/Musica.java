@@ -12,7 +12,9 @@ public class Musica {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String titulo;
-    private String autor;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Autor autor;
     private String album;
     private LocalDateTime dataCriacao = LocalDateTime.now();
 
@@ -23,13 +25,13 @@ public class Musica {
 
     }
 
-    public Musica(String titulo, String autor, String album) {
+    public Musica(String titulo, Autor autor, String album) {
         this.titulo = titulo;
         this.autor = autor;
         this.album = album;
     }
 
-    public Musica(String titulo, String autor, String album, LocalDateTime dataCriacao, Usuario usuario) {
+    public Musica(String titulo, Autor autor, String album, LocalDateTime dataCriacao, Usuario usuario) {
         this.titulo = titulo;
         this.autor = autor;
         this.album = album;
@@ -53,11 +55,11 @@ public class Musica {
         this.titulo = titulo;
     }
 
-    public String getAutor() {
+    public Autor getAutor() {
         return autor;
     }
 
-    public void setAutor(String autor) {
+    public void setAutor(Autor autor) {
         this.autor = autor;
     }
 
