@@ -50,10 +50,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
                 .antMatchers(HttpMethod.GET, "/actuator/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/*").permitAll()
                 .antMatchers(HttpMethod.GET, "/home/*").permitAll()
-                .antMatchers(HttpMethod.POST, "/user/add").permitAll()
-                .antMatchers(HttpMethod.POST, "/user").permitAll()
                 .antMatchers(HttpMethod.POST, "/auth/login").permitAll()
-                .antMatchers(HttpMethod.POST, "/mail").permitAll()
+                .antMatchers(HttpMethod.GET, "/auth/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/album/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/static/**").permitAll()
                 .anyRequest().authenticated()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -69,7 +68,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry
                 .addResourceHandler("/static/**")
-                .addResourceLocations("classpath:static/").setCachePeriod(3600);
+                .addResourceLocations("classpath:static/");
     }
 
     public static void main(String[] args) {

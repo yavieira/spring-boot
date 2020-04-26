@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{home.page.title}"></title>
+
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"></script>
+
+    <link href="../static/css/bootstrap-3.3.4-dist/css/bootstrap.min.css" rel="stylesheet" media="screen"
+          th:href="@{static/css/bootstrap-3.3.4-dist/css/bootstrap.min.css}"/>
+
+    <link th:href="@{static/css/custom.css}" rel="stylesheet" media="screen"/>
+</head>
+
+<body>
+
+<div class="jumbotron" th:fragment="jumbotron">
+</div>
+
+
+</body>
+</html>
